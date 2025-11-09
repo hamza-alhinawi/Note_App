@@ -3,7 +3,7 @@ import 'package:note_app/widgets/custom_note_item.dart';
 
 class CustomNoteListView extends StatelessWidget {
   const CustomNoteListView({super.key});
-
+  final List data = const [];
   @override
   Widget build(BuildContext context) {
     return Expanded(
