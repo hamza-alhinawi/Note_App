@@ -9,7 +9,12 @@ class NotesViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 9),
+        padding: const EdgeInsets.only(
+          left: 16.0,
+          right: 16,
+          bottom: 16,
+          top: 10,
+        ),
         child: Column(children: [CustomAppBar(), CustomNoteListView()]),
       ),
     );
