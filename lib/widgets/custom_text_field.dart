@@ -7,16 +7,20 @@ class CustomTextField extends StatelessWidget {
     this.padding,
     required this.hintText,
     required this.labelText,
-    this.maxLines,
+    this.maxLength,
+    this.maxLlines,
   });
   final EdgeInsets? padding;
   final String? hintText;
   final String? labelText;
-  final int? maxLines;
+  final int? maxLength;
+  final int? maxLlines;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
-      maxLength: maxLines,
+      maxLines: maxLlines,
+      maxLength: maxLength,
       cursorColor: kPrimaryColor,
       style: TextStyle(color: Colors.black),
       decoration: InputDecoration(

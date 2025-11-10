@@ -19,7 +19,7 @@ class AddNoteBottomSheet extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 60, horizontal: 16),
               hintText: 'Write a Content',
               labelText: 'Content',
-              maxLines: 10000,
+              maxLength: 10000,
             ),
             SizedBox(height: 20),
 

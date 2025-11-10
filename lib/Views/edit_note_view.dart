@@ -16,12 +16,13 @@ class EditNoteView extends StatelessWidget {
             SizedBox(height: 20),
 
             CustomTextField(hintText: 'Write a Title', labelText: 'Title'),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             CustomTextField(
               padding: EdgeInsets.symmetric(vertical: 60, horizontal: 16),
               hintText: 'Write a Content',
               labelText: 'Content',
-              maxLines: 10000,
+              maxLength: 10000,
+              maxLlines: 5,
             ),
           ],
         ),
