@@ -10,22 +10,59 @@ class AddNoteBottomSheet extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(20),
       height: 600,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomTextField(hintText: 'Write a Title', labelText: 'Title'),
-            SizedBox(height: 10),
-            CustomTextField(
-              padding: EdgeInsets.symmetric(vertical: 60, horizontal: 16),
-              hintText: 'Write a Content',
-              labelText: 'Content',
-              maxLength: 10000,
-            ),
-            SizedBox(height: 20),
+      child: SingleChildScrollView(child: AddNoteForm()),
+    );
+  }
+}
 
-            CustomBottom(),
-          ],
-        ),
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({super.key});
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  final GlobalKey<FormState> fromKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? title, content;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          CustomTextField(
+            hintText: 'Write a Title',
+            labelText: 'Title',
+            onSaved: (value) {
+              title = value;
+            },
+          ),
+          SizedBox(height: 10),
+          CustomTextField(
+            padding: EdgeInsets.symmetric(vertical: 60, horizontal: 16),
+            hintText: 'Write a Content',
+            labelText: 'Content',
+            maxLength: 10000,
+            onSaved: (value) {
+              content = value;
+            },
+          ),
+          SizedBox(height: 20),
+
+          CustomBottom(
+            onTap: () {
+              if (fromKey.currentState!.validate()) {
+                fromKey.currentState!.save();
+              } else {
+                setState(() {
+                  autovalidateMode = AutovalidateMode.always;
+                });
+              }
+              setState(() {});
+            },
+          ),
+        ],
       ),
     );
   }

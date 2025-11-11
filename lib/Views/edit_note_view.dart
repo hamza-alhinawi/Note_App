@@ -15,7 +15,11 @@ class EditNoteView extends StatelessWidget {
             CustomAppBar(title: 'Edit Note', icon: Icons.check),
             SizedBox(height: 20),
 
-            CustomTextField(hintText: 'Write a Title', labelText: 'Title'),
+            CustomTextField(
+              hintText: 'Write a Title',
+              labelText: 'Title',
+              onSaved: (String? p1) {},
+            ),
             SizedBox(height: 20),
             CustomTextField(
               padding: EdgeInsets.symmetric(vertical: 60, horizontal: 16),
@@ -23,6 +27,7 @@ class EditNoteView extends StatelessWidget {
               labelText: 'Content',
               maxLength: 10000,
               maxLlines: 5,
+              onSaved: (String? p1) {},
             ),
           ],
         ),
