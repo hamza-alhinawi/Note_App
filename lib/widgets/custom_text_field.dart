@@ -33,6 +33,7 @@ class CustomTextField extends StatelessWidget {
       cursorColor: kPrimaryColor,
       style: TextStyle(color: Colors.black),
       decoration: InputDecoration(
+        border: OutlineInputBorder(),
         contentPadding: padding,
         hintText: hintText,
         labelText: labelText,

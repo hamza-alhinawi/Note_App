@@ -23,12 +23,14 @@ class AddNoteForm extends StatefulWidget {
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
-  final GlobalKey<FormState> fromKey = GlobalKey();
+  final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, content;
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         children: [
           CustomTextField(
@@ -52,8 +54,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
           CustomBottom(
             onTap: () {
-              if (fromKey.currentState!.validate()) {
-                fromKey.currentState!.save();
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
               } else {
                 setState(() {
                   autovalidateMode = AutovalidateMode.always;
