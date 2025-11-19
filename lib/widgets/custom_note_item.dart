@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/Models/note_model.dart';
 import 'package:note_app/Views/edit_note_view.dart';
+import 'package:note_app/cubits/notes_cubits/notes_cubit.dart';
 
 class CustomNoteItem extends StatelessWidget {
   const CustomNoteItem({super.key, required this.noteModel});
@@ -53,7 +55,12 @@ class CustomNoteItem extends StatelessWidget {
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  // var box = Hive.box<NoteModel>('notes');
+                  // var noteModel = box.getAt;
+                  noteModel.delete();
+                  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                },
                 icon: Icon(
                   Icons.delete,
                   color: const Color.fromARGB(255, 13, 7, 7),
