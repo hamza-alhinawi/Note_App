@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/Models/note_model.dart';
 import 'package:note_app/Views/edit_note_view.dart';
 
 class CustomNoteItem extends StatelessWidget {
-  const CustomNoteItem({super.key});
+  const CustomNoteItem({super.key, required this.noteModel});
+  final NoteModel noteModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,7 +24,7 @@ class CustomNoteItem extends StatelessWidget {
         height: 200,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xffffcc80),
+          color: Color(noteModel.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -30,14 +32,21 @@ class CustomNoteItem extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                'Flutter Tips',
-                style: TextStyle(fontSize: 30, color: Colors.black),
+                maxLines: 1,
+                noteModel.title,
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: 30,
+                  color: Colors.black,
+                ),
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 9.0),
                 child: Text(
-                  'build your career with thrwat',
+                  noteModel.content,
+                  maxLines: 2,
                   style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
                     fontSize: 18,
                     color: Colors.black.withValues(alpha: 0.5),
                   ),
@@ -45,14 +54,18 @@ class CustomNoteItem extends StatelessWidget {
               ),
               trailing: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.delete, color: Colors.black, size: 25),
+                icon: Icon(
+                  Icons.delete,
+                  color: const Color.fromARGB(255, 13, 7, 7),
+                  size: 25,
+                ),
               ),
             ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
               child: Text(
-                '20/10/2024',
+                noteModel.date.toString().split(' ')[0],
                 style: TextStyle(color: Colors.black.withValues(alpha: 0.5)),
               ),
             ),
