@@ -26,9 +26,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           CustomTextField(
             hintText: 'Write a Title',
             labelText: 'Title',
-            onSaved: (value) {
-              title = value;
-            },
+            onchanged: (String p1) {},
           ),
           SizedBox(height: 10),
           CustomTextField(
@@ -39,6 +37,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onSaved: (value) {
               content = value;
             },
+            onchanged: (String p1) {},
           ),
           SizedBox(height: 20),
 

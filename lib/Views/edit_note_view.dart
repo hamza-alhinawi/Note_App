@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/Models/note_model.dart';
 import 'package:note_app/widgets/custom_app_bar.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
 
-class EditNoteView extends StatelessWidget {
-  const EditNoteView({super.key});
+class EditNoteView extends StatefulWidget {
+  const EditNoteView({super.key, required this.noteModel});
+  final NoteModel noteModel;
 
+  @override
+  State<EditNoteView> createState() => _EditNoteViewState();
+}
+
+class _EditNoteViewState extends State<EditNoteView> {
+  String? title, content;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,22 +20,38 @@ class EditNoteView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
-            CustomAppBar(title: 'Edit Note', icon: Icons.check),
+            CustomAppBar(
+              title: 'Edit Note',
+              icon: Icons.check,
+              onPressed: () {
+                widget.noteModel.title = title ?? widget.noteModel.title;
+                widget.noteModel.content = content ?? widget.noteModel.content;
+                widget.noteModel.save();
+                Navigator.pop(context);
+                setState(() {});
+              },
+            ),
             SizedBox(height: 20),
 
             CustomTextField(
-              hintText: 'Write a Title',
+              hintText: widget.noteModel.title,
               labelText: 'Title',
-              onSaved: (String? p1) {},
+              onchanged: (value) {
+                title;
+                value;
+              },
             ),
             SizedBox(height: 20),
             CustomTextField(
               padding: EdgeInsets.symmetric(vertical: 60, horizontal: 16),
-              hintText: 'Write a Content',
+              hintText: widget.noteModel.content,
               labelText: 'Content',
               maxLength: 10000,
               maxLlines: 5,
-              onSaved: (String? p1) {},
+              onchanged: (value) {
+                content;
+                value;
+              },
             ),
           ],
         ),

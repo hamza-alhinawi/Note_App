@@ -9,14 +9,16 @@ class CustomTextField extends StatelessWidget {
     required this.labelText,
     this.maxLength,
     this.maxLlines,
-    required this.onSaved,
+    this.onSaved,
+    this.onchanged,
   });
+  final Function(String)? onchanged;
   final EdgeInsets? padding;
   final String? hintText;
   final String? labelText;
   final int? maxLength;
   final int? maxLlines;
-  final void Function(String?) onSaved;
+  final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class CustomTextField extends StatelessWidget {
         }
         return null;
       },
+      onChanged: onchanged,
       onSaved: onSaved,
       maxLines: maxLlines,
       maxLength: maxLength,
