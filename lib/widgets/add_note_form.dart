@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/Models/note_model.dart';
 import 'package:note_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:note_app/widgets/colors_list.dart';
 import 'package:note_app/widgets/custom_bottom.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
 
@@ -27,6 +28,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
             hintText: 'Write a Title',
             labelText: 'Title',
             onchanged: (String p1) {},
+            onSaved: (value) {
+              title = value;
+            },
           ),
           SizedBox(height: 10),
           CustomTextField(
@@ -40,7 +44,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onchanged: (String p1) {},
           ),
           SizedBox(height: 20),
-
+          ColorsListView(),
+          SizedBox(height: 20),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomBottom(
@@ -65,6 +70,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
               );
             },
           ),
+          SizedBox(height: 20),
         ],
       ),
     );
