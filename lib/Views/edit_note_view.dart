@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/Models/note_model.dart';
+import 'package:note_app/cubits/notes_cubits/notes_cubit.dart';
 import 'package:note_app/widgets/custom_app_bar.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
 import 'package:note_app/widgets/edit_note_color_list.dart';
@@ -19,7 +21,7 @@ class _EditNoteViewState extends State<EditNoteView> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
+        child: ListView(
           children: [
             CustomAppBar(
               title: 'Edit Note',
@@ -29,17 +31,16 @@ class _EditNoteViewState extends State<EditNoteView> {
                 widget.noteModel.content = content ?? widget.noteModel.content;
                 widget.noteModel.save();
                 Navigator.pop(context);
-                setState(() {});
+                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               },
             ),
             SizedBox(height: 20),
-
             CustomTextField(
               hintText: widget.noteModel.title,
               labelText: 'Title',
               onchanged: (value) {
-                title;
-                value;
+                title = value;
+                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               },
             ),
             SizedBox(height: 20),
@@ -50,8 +51,8 @@ class _EditNoteViewState extends State<EditNoteView> {
               maxLength: 10000,
               maxLlines: 5,
               onchanged: (value) {
-                content;
-                value;
+                content = value;
+                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               },
             ),
             EditNoteColorList(noteModel: widget.noteModel),

@@ -68,12 +68,15 @@ class CustomNoteItem extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.only(right: 16.0),
+              padding: const EdgeInsets.only(right: 10.0),
               child: Text(
                 noteModel.date.toString().split(' ')[0],
-                style: TextStyle(color: Colors.black.withValues(alpha: 0.5)),
+                style: TextStyle(
+                  // fontSize: 15,
+                  color: Colors.black.withValues(alpha: 0.5),
+                ),
               ),
             ),
           ],

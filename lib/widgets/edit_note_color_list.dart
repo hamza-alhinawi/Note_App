@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/Models/note_model.dart';
 import 'package:note_app/constans.dart';
+import 'package:note_app/cubits/notes_cubits/notes_cubit.dart';
 import 'package:note_app/widgets/color_item.dart';
 
 class EditNoteColorList extends StatefulWidget {
@@ -30,6 +32,7 @@ class _EditNoteColorListState extends State<EditNoteColorList> {
             onTap: () {
               currentIndex = index;
               widget.noteModel.color = kColors[index].value;
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               setState(() {});
             },
             child: ColorItem(
