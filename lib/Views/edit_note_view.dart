@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:note_app/Models/note_model.dart';
 import 'package:note_app/widgets/custom_app_bar.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
+import 'package:note_app/widgets/edit_note_color_list.dart';
 
 class EditNoteView extends StatefulWidget {
   const EditNoteView({super.key, required this.noteModel});
@@ -17,7 +18,7 @@ class _EditNoteViewState extends State<EditNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             CustomAppBar(
@@ -53,6 +54,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                 value;
               },
             ),
+            EditNoteColorList(noteModel: widget.noteModel),
           ],
         ),
       ),
